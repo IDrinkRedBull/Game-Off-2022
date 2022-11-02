@@ -7,7 +7,7 @@ public class Swing : MonoBehaviour
     public Transform AttackPoint;
     public float AttackRange;
     public LayerMask EnemyHitBox;
-    public int dmg = 1;
+    public int dmg = 40;
     public float AttackRate;
     float NextAttackTime = 0f;
 

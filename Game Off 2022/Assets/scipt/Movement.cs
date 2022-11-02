@@ -33,8 +33,12 @@ public class Movement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && DoubleJump)
         {
             apple.velocity = new Vector2(apple.velocity.x, jumpingPower);
+            DoubleJump =!DoubleJump;
         }
-
+        if (IsGrounded())
+        {
+            DoubleJump = true;
+        }
     }
 
     private bool IsGrounded()// ground check
@@ -45,6 +49,7 @@ public class Movement : MonoBehaviour
     private void FixedUpdate()
     {
         apple.velocity = new Vector2(horizonetal * speed, apple.velocity.y);
+        Debug.Log(apple.velocity);
     }
 
     private void flip()
