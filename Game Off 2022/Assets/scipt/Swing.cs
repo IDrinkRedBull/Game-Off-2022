@@ -7,14 +7,23 @@ public class Swing : MonoBehaviour
     public Transform AttackPoint;
     public float AttackRange;
     public LayerMask EnemyHitBox;
+    public int dmg = 1;
+    public float AttackRate;
+    float NextAttackTime = 0f;
+
     
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if ( Time.time >= NextAttackTime)
         {
-            Attack();
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                Attack();
+                NextAttackTime = Time.time + 0.5f;//swing spam controller
+            }
         }
+        
     }
 
 
@@ -25,6 +34,7 @@ public class Swing : MonoBehaviour
         foreach(Collider2D a in Hit)
         {
             Debug.Log("hitet" + a.name);
+            a.GetComponent<EnemyScipt>().GetHit(dmg);
         }
     }
 

@@ -285,6 +285,8 @@ MonoBehaviour:
   EnemyHitBox:
     serializedVersion: 2
     m_Bits: 128
+  dmg: 40
+  AttackRate: 0
 --- !u!1 &387017373
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,6 +298,7 @@ GameObject:
   - component: {fileID: 387017375}
   - component: {fileID: 387017374}
   - component: {fileID: 387017376}
+  - component: {fileID: 387017377}
   m_Layer: 7
   m_Name: Capsule
   m_TagString: Untagged
@@ -386,6 +389,18 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
+--- !u!114 &387017377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 387017373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc91735d823638e49aa29f9913a26fc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &498764632
 GameObject:
   m_ObjectHideFlags: 0
