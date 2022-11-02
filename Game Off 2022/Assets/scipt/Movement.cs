@@ -32,7 +32,7 @@ public class Movement : MonoBehaviour
 
     }
 
-    private bool IsGrounded()// bug fix
+    private bool IsGrounded()// ground check
     {
         return Physics2D.OverlapCircle(groundX.position, 0.2f, groundZ);
     }
