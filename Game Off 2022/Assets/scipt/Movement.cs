@@ -8,6 +8,7 @@ public class Movement : MonoBehaviour
     private float speed = 8f;
     private float jumpingPower = 16f;
     private bool isFacingRight = true;
+    bool DoubleJump = true;
     [SerializeField] private Rigidbody2D apple;
     [SerializeField] private Transform groundX;
     [SerializeField] private LayerMask groundZ;
@@ -29,6 +30,10 @@ public class Movement : MonoBehaviour
             apple.velocity = new Vector2(apple.velocity.x, apple.velocity.y * 0.5f);
         }
         //Debug.Log(apple.velocity);
+        if (Input.GetButtonDown("Jump") && DoubleJump)
+        {
+            apple.velocity = new Vector2(apple.velocity.x, jumpingPower);
+        }
 
     }
 
