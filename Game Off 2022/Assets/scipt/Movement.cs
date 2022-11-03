@@ -49,7 +49,6 @@ public class Movement : MonoBehaviour
     private void FixedUpdate()
     {
         apple.velocity = new Vector2(horizonetal * speed, apple.velocity.y);
-        Debug.Log(apple.velocity);
     }
 
     private void flip()
@@ -67,4 +66,10 @@ public class Movement : MonoBehaviour
             */
         }
     }
+
+    public void Dasforward()
+    {
+        apple.velocity = new Vector2(3, 0);
+    }
+
 }
