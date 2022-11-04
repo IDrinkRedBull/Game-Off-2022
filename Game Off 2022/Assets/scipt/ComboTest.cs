@@ -10,7 +10,7 @@ public class ComboTest : MonoBehaviour
     public LayerMask EnemyHitBox;
     public int dmg = 1;
     float LCT = 0;
-    public float delay = 2f;
+    public float delay = 1f;
     int num = 1;
     public Transform Hitbox3;
     float ComboDelay = 0;
