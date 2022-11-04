@@ -4,32 +4,34 @@ using UnityEngine;
 
 public class ComboTest : MonoBehaviour
 {
+    public int NumOfClick = 1;
     public Transform AttackPoint;
     public float AttackRange;
     public LayerMask EnemyHitBox;
     public int dmg = 1;
-    public int NumOfClick = 0;
     float LCT = 0;
-    public float delay = 0.9f;
+    public float delay = 2f;
     int num = 1;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Transform Hitbox3;
+    float ComboDelay = 0;
+
+    
 
     // Update is called once per frame
     void Update()
     {
-        if (Time.time - LCT < delay)
+        if (Time.time - LCT > delay)
         {
-            NumOfClick = 0;
+            NumOfClick = 1;
             num = 1;
         }
         if (Input.GetMouseButtonDown(0))
         {
-            LCT = Time.time;
-            NumOfClick++;
+            
+            if (NumOfClick != 0)
+            {
+                LCT = Time.time;
+            }
             
             if (NumOfClick == 1)
             {
@@ -39,11 +41,22 @@ public class ComboTest : MonoBehaviour
                     Debug.Log("1 hitet " + a.name);
                     a.GetComponent<EnemyScipt>().GetHit(dmg);
                 }
+                NumOfClick++;
+                ComboDelay = Time.time;
             }
-            Debug.Log(NumOfClick);
-            NumOfClick = Mathf.Clamp(NumOfClick, 0,3);
-            return1();
-            return2();
+            
+            if(Time.time-ComboDelay > 0.3f)
+            {
+                return1();
+            }
+            
+            
+            if(Time.time-ComboDelay > 0.6f)
+            {
+                return2();
+                
+            }
+            NumOfClick = Mathf.Clamp(NumOfClick, 0, 3);
         }
 
         
@@ -65,7 +78,8 @@ public class ComboTest : MonoBehaviour
                     a.GetComponent<EnemyScipt>().GetHit(dmg);
                 }
                 num = 2;
-            
+                NumOfClick++;
+
             }
             else
             {
@@ -84,24 +98,23 @@ public class ComboTest : MonoBehaviour
 
     public void return2()
     {
-        if (NumOfClick == 2)
+        if (NumOfClick == 3)
         {
             if (num == 2)
             {
                 //atk3
-                Collider2D[] Hit3 = Physics2D.OverlapCircleAll(AttackPoint.position, AttackRange, EnemyHitBox);
+                
+                Collider2D[] Hit3 = Physics2D.OverlapBoxAll(Hitbox3.position,Hitbox3.localScale,0, EnemyHitBox);
                 foreach (Collider2D a in Hit3)
                 {
                     Debug.Log("3 hitet " + a.name);
                     a.GetComponent<EnemyScipt>().GetHit(dmg);
                 }
-                num = 3;
+
+                NumOfClick = 0;
 
             }
-            else
-            {
-                NumOfClick = 0;
-            }
+            
         }
 
     }
