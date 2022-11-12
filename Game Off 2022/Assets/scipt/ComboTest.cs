@@ -36,7 +36,6 @@ public class ComboTest : MonoBehaviour
             else if (NumOfClick == 2) atk2();
             else if (NumOfClick == 3) atk3();
             
-            
         }
     }
 
