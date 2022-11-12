@@ -5,8 +5,8 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     private float horizonetal;
-    private float speed = 8f;
-    private float jumpingPower = 12f;
+    [SerializeField] private float speed = 8f;
+    [SerializeField] private float jumpingPower = 12f;
     private bool isFacingRight = true;
     bool DoubleJump = true;
     [SerializeField] private Rigidbody2D apple;
