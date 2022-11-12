@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Pizza
+  - TongTong
+  - WallPizza
   layers:
   - Default
   - TransparentFX
@@ -12,9 +14,9 @@ TagManager:
   - 
   - Water
   - UI
-  - Gound
+  - Ground
   - Enemy
-  - 
+  - Player
   - 
   - 
   - 

@@ -2,21 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PizaFly : MonoBehaviour
+public class PineapleFly : MonoBehaviour
 {
-    float y;
+    float bozz = 10;
     public Rigidbody2D rb;
     public LayerMask ground;
     // Start is called before the first frame update
     void Start()
     {
-        
-        y = Random.Range(-5f, -10f);
-        rb.velocity = new Vector2(0,y);
-        
+        float x = Random.Range(-4, -10);
+        float y = Random.Range(-5, -10);
+        rb.velocity = new Vector2(x, y);
+
     }
 
-    
+
 
     /*
     void OnTriggerEnter2D(Collider2D Hit)
@@ -36,7 +36,7 @@ public class PizaFly : MonoBehaviour
     }
     */
 
-
+    /*
     void OnCollisionEnter2D(Collision2D Hit)
     {
         /*
@@ -51,13 +51,41 @@ public class PizaFly : MonoBehaviour
         {
             //Destroy(gameObject);
         }
-        */
         
+        if (Hit.gameObject.tag == "TongTong")
+        {
+            rb.velocity = new Vector2(rb.velocity.x, y);
+            Debug.Log("work");
+        }
 
-        Destroy(gameObject);
-        
+        Destroy(gameObject, 2f);
+
 
     }
+    */
+
+
+    private void OnTriggerEnter2D(Collider2D Hit)
+    {
+        if (Hit.gameObject.tag == "TongTong")
+        {
+            rb.velocity = new Vector2(rb.velocity.x, bozz);
+            Debug.Log("work");
+        }
+        if (Hit.gameObject.tag == "WallPizza")
+        {
+            rb.velocity = new Vector2(-rb.velocity.x, rb.velocity.y);
+        }
+
+
+        Destroy(gameObject, 5f);
+
+    }
+
+
+
+
+
 
 
 
