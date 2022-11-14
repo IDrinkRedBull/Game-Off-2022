@@ -15,6 +15,7 @@ public class PizaBoss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         size = new Vector3(4f, 0.7f, 1f);
 
         InvokeRepeating("salami",1f,1f);
