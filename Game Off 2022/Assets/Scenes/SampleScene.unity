@@ -709,10 +709,10 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: -0.0734767
-    y: -0.07324841
-    width: 1.1469533
-    height: 1.1464968
+    x: -0.18115944
+    y: -0.18181819
+    width: 1.3640239
+    height: 1.3636364
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -1512,7 +1512,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1886053172}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.6106495, y: 0.12311469, z: 8.888684}
+  m_LocalPosition: {x: 1.33, y: 0.15, z: 8.888684}
   m_LocalScale: {x: 2.0519135, y: 0.60441965, z: 2.0519135}
   m_ConstrainProportionsScale: 1
   m_Children: []

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ComboTest : MonoBehaviour
 {
+    Rigidbody2D rb;
     public Transform AttackPoint;
     public LayerMask EnemyHitBox;
     public Transform Hitbox3;
@@ -14,8 +15,11 @@ public class ComboTest : MonoBehaviour
 
     float cooldown = 0.3f;
     float resetTimer = 1;
-    
 
+    private void Start()
+    {
+        rb = gameObject.GetComponent<Rigidbody2D>();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -67,7 +71,6 @@ public class ComboTest : MonoBehaviour
     public void atk3()
     {
         //atk3
-
         Collider2D[] Hit3 = Physics2D.OverlapBoxAll(Hitbox3.position, Hitbox3.localScale, 0, EnemyHitBox);
         foreach (Collider2D a in Hit3)
         {
@@ -76,6 +79,7 @@ public class ComboTest : MonoBehaviour
         }
         NumOfClick = 0;
         Debug.Log("Third attack");
+
     }
 
     void OnDrawGizmosSelected()
