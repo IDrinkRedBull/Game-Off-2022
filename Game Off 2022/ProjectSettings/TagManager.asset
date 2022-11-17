@@ -7,6 +7,7 @@ TagManager:
   - Pizza
   - TongTong
   - WallPizza
+  - Eatable
   layers:
   - Default
   - TransparentFX
