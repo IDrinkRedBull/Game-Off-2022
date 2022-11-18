@@ -7,7 +7,7 @@ public class Movement : MonoBehaviour
     private float horizonetal;
     [SerializeField] private float speed = 8f;
     [SerializeField] private float jumpingPower = 12f;
-    private bool isFacingRight = true;
+    public bool isFacingRight = true;
     bool DoubleJump = true;
     [SerializeField] private Rigidbody2D apple;
     [SerializeField] private Transform groundX;

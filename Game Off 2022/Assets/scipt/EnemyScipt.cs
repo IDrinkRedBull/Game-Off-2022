@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyScipt : MonoBehaviour
 {
-    int hp = 100;
+    public int hp = 2;
     
 
     // Update is called once per frame
@@ -15,10 +15,16 @@ public class EnemyScipt : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player Bullet")
+        {
+            GetHit(1);
+        }
+    }
     public void GetHit(int dmg)
     {
         hp -= dmg;
     }
-    
+
 }
