@@ -446,6 +446,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rayPoint: {fileID: 2130074463}
   range: 1
+  mask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!95 &195957318
 Animator:
   serializedVersion: 4
@@ -540,7 +543,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 256169999}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 1e45ab569fa82f2448ab73fd4d589ffd, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -963,10 +966,10 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.0006381621
-    y: 0.00113443
-    width: 0.9980855
-    height: 0.99829835
+    x: 0
+    y: 0
+    width: 0.9993284
+    height: 0.998358
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -6477,6 +6480,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rayPoint: {fileID: 1908506579}
   range: 1
+  mask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!50 &1927319933
 Rigidbody2D:
   serializedVersion: 4

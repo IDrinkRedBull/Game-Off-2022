@@ -7,6 +7,7 @@ public class Croissant : MonoBehaviour
     public Transform rayPoint;
     public float range;
     Rigidbody2D rb;
+    public LayerMask mask;
 
     float direction = -1;
     // Start is called before the first frame update
@@ -18,7 +19,7 @@ public class Croissant : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RaycastHit2D hit = Physics2D.Raycast(rayPoint.position, Vector2.down, range);
+        RaycastHit2D hit = Physics2D.Raycast(rayPoint.position, Vector2.down, range, mask);
         Debug.DrawRay(rayPoint.position, Vector2.down * range);
 
         if (hit.collider == null)

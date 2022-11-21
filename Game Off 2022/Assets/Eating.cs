@@ -36,6 +36,7 @@ public class Eating : MonoBehaviour
                 Destroy(food.gameObject);
                 eatAmount++;
             }
+
         }
 
         // Combating
