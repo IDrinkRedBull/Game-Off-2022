@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: -2042952918462115528}
   - component: {fileID: 1948756208738517809}
   - component: {fileID: 6845321544102058953}
-  m_Layer: 7
+  - component: {fileID: -372313199325465285}
+  m_Layer: 9
   m_Name: Fly Bullet
   m_TagString: Eatable
   m_Icon: {fileID: 0}
@@ -99,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0408bfa4227153347b6e7a26493ffd5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 5
+  force: 8
 --- !u!50 &1948756208738517809
 Rigidbody2D:
   serializedVersion: 4
@@ -137,3 +138,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.012087822}
   serializedVersion: 2
   m_Radius: 0.38527012
+--- !u!114 &-372313199325465285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4060549241087540078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc91735d823638e49aa29f9913a26fc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 1
+  highlight: 0

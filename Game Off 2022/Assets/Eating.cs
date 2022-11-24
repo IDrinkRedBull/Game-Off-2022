@@ -8,13 +8,16 @@ public class Eating : MonoBehaviour
     public GameObject salad, tomato, meat, cheese;
     public GameObject point;
     public LayerMask food;
-    public Slider bar;
+    public Sprite empty ,charge1, charge2, charge3, charge4;
+    public Image image;
 
     public float range;
 
     float eatAmount;
 
+    GameObject ob;
 
+    public float eatDelay;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,16 +27,20 @@ public class Eating : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        eatDelay -= Time.deltaTime;
 
+        findEnemy();
         // Charging bar
-        bar.value = eatAmount;
+
         Collider2D[] hit = Physics2D.OverlapCircleAll(point.transform.position, range, food);
 
         foreach (Collider2D food in hit)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            ob.GetComponent<EnemyScipt>().highlight = 0.02f;
+            if (Input.GetKeyDown(KeyCode.E) && eatDelay <= 0)
             {
-                Destroy(food.gameObject);
+                eatDelay = 0.3f;
+                Destroy(ob);
                 eatAmount++;
             }
 
@@ -51,6 +58,12 @@ public class Eating : MonoBehaviour
             else if (eatAmount == 3) StartCoroutine(attack(meat, 0));
             else if (eatAmount == 4) StartCoroutine(attack(cheese, 0));
         }
+
+        if (eatAmount == 0) image.sprite = empty;
+        else if (eatAmount == 1) image.sprite = charge1;
+        else if (eatAmount == 2) image.sprite = charge2;
+        else if (eatAmount == 3) image.sprite = charge3;
+        else if (eatAmount == 4) image.sprite = charge4;
     }
 
     private void OnDrawGizmosSelected()
@@ -63,5 +76,27 @@ public class Eating : MonoBehaviour
         yield return new WaitForSeconds(s);
         Instantiate(prefab, transform.position, Quaternion.identity);
         eatAmount = 0;
+    }
+
+    void findEnemy()
+    {
+        float disToClosestEnemy = Mathf.Infinity;
+        EnemyScipt closestEnemy = null;
+
+        // Find all enemy and put them in a array
+        EnemyScipt[] allEnemies = GameObject.FindObjectsOfType<EnemyScipt>();
+
+        // check all enemy and see which one is closer
+        foreach (EnemyScipt currentEnemy in allEnemies)
+        {
+            float distanceToEnemy = (currentEnemy.transform.position - transform.position).sqrMagnitude;
+            if (distanceToEnemy <= disToClosestEnemy)
+            {
+                // Set the distance to the cloest enemy
+                disToClosestEnemy = distanceToEnemy;
+                closestEnemy = currentEnemy;
+                ob = closestEnemy.gameObject;
+            }
+        }
     }
 }
