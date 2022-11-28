@@ -10,8 +10,8 @@ public class PineapleFly : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        float x = Random.Range(-4, -10);
-        float y = Random.Range(-5, -10);
+        float x = Random.Range(-8, -10);
+        float y = Random.Range(-1, 5);
         rb.velocity = new Vector2(x, y);
 
     }

@@ -10,6 +10,8 @@ TagManager:
   - Eatable
   - Player Bullet
   - Enemy
+  - Enemy Bullet
+  - Cheese
   layers:
   - Default
   - TransparentFX
@@ -20,8 +22,8 @@ TagManager:
   - Ground
   - Enemy
   - Player
-  - Eatable
-  - 
+  - Eatable Food
+  - Eatable Enemy
   - 
   - 
   - 

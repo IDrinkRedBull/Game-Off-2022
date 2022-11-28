@@ -19,17 +19,22 @@ public class Cheese : MonoBehaviour
         if (movement.isFacingRight) direction = 1;
         else if (!movement.isFacingRight) direction = -1;
 
-        pos = new Vector2(transform.position.x + 10 * direction, transform.position.y);
+        pos = new Vector2(transform.position.x + 15 * direction, transform.position.y);
         flyBack = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!flyBack) transform.position = Vector2.Lerp(transform.position, pos, 5 * Time.deltaTime);
+        if (!flyBack) transform.position = Vector2.Lerp(transform.position, pos, 4.8f * Time.deltaTime);
 
-        Invoke("boomerang", 1);
+        Invoke("boomerang", 0.8f);
 
+        if ((transform.position - player.position).magnitude <= 5 && flyBack)
+        {
+            Destroy(gameObject);
+        }
+        Debug.Log((transform.position - player.position).magnitude);
     }
 
     void boomerang()

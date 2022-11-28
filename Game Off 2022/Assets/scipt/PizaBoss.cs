@@ -4,37 +4,61 @@ using UnityEngine;
 
 public class PizaBoss : MonoBehaviour
 {
+    public Transform sala1, sala2, sala3;
     public Transform slamHitBox;
     public GameObject PineapleSpawn;
     public Transform pizaSpawn;
     public GameObject piza;
     public LayerMask player;
-    private Vector3 size;
     public Transform HUMAN;
     public bool isfliped = false;
-    // Start is called before the first frame update
-    void Start()
-    {
 
-        size = new Vector3(4f, 0.7f, 1f);
+    public bool firstPhases;
+    public bool secondPhases;
 
-        InvokeRepeating("salami",1f,1f);
-        
-        //InvokeRepeating("Pineaple", 1f, 2.1f);
+    public float salamiTimer;
+    public float period;
+    float repeatCount = 0;
 
-    }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
+        salamiTimer += Time.deltaTime;
+        BossFlip();
+
+        if (Input.GetKeyDown(KeyCode.F))
         {
-            for(int i =1; i<10; i++)
+            salamiTimer = 10;
+        }
+        if (firstPhases && salamiTimer > 0.7f)
+        {
+            Invoke("salami", 1);
+            salamiTimer = 0;
+            repeatCount++;
+
+            if (repeatCount >= 11)
             {
-                Invoke("salami", 1f);
+                firstPhases = false;
+                secondPhases = true;
+                repeatCount = 0;
             }
         }
-        BossFlip();
+        else if (secondPhases && salamiTimer > 2)
+        {
+            Invoke("Pineaple", 1);
+            salamiTimer = 0;
+            repeatCount++;
+
+            if (repeatCount >= 6)
+            {
+                secondPhases = false;
+                firstPhases = true;
+                repeatCount = 0;
+                salamiTimer = 0;
+            }
+        }
+
     }
 
     void Pineaple()
@@ -44,32 +68,11 @@ public class PizaBoss : MonoBehaviour
 
     void salami()
     {
-        float x = Random.Range(-2.5f, -12f);
-        Vector3 pos = new Vector3(x, 5.4f, 0f);
-        Instantiate(piza,pos, pizaSpawn.rotation);
+        float x = Random.Range(sala1.position.x, sala2.position.x);
+        Vector3 pos = new Vector3(x, sala3.position.y, 0f);
+        Instantiate(piza, pos, Quaternion.identity);
+        Debug.Log("Is running");
     }
-
-    public void slam()
-    {
-        //Debug.Log("1");
-        Collider2D[] Hited = Physics2D.OverlapBoxAll(slamHitBox.position, size, 0, player);
-        foreach (Collider2D a in Hited)
-        {
-            Debug.Log("hit ");
-        }
-    }
-
-
-
-
-    void OnDrawGizmosSelected()
-    {
-        if (slamHitBox == null)
-            return;
-
-        Gizmos.DrawWireCube(slamHitBox.position,size);
-    }
-
 
     public void BossFlip()
     {

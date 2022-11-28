@@ -1,38 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class EnemyScipt : MonoBehaviour
 {
+    public Slider slider;
+    public bool isBoss;
     public int hp = 2;
 
     public float highlight;
     // Update is called once per frame
     void Update()
     {
-        highlight -= 0.01f;
+        if (hp <= 0) Destroy(gameObject);
 
-        if (hp <= 0)
+        if (isBoss)
         {
-            Destroy(gameObject);
-        }
-
-
-        if (highlight <= 0)
-        {
-            gameObject.GetComponent<SpriteRenderer>().color = Color.white;
-        }
-        else
-        {
-            gameObject.GetComponent<SpriteRenderer>().color = Color.black;
+            slider.maxValue = 30;
+            slider.value = hp;
+            slider.gameObject.SetActive(true);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player Bullet")
-        {
-            GetHit(1);
-        }
+        if (collision.gameObject.tag == "Player Bullet") GetHit(1);
+        if ((collision.gameObject.tag == "Cheese")) GetHit(3);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player Bullet") GetHit(1);
+        if ((collision.gameObject.tag == "Cheese")) GetHit(3);
     }
     public void GetHit(int dmg)
     {

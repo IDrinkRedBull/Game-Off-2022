@@ -11,7 +11,7 @@ public class Tomato : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        Destroy(gameObject, 4);
+        Destroy(gameObject, 2);
     }
 
     // Update is called once per frame
