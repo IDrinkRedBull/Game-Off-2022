@@ -43,7 +43,7 @@ public class Movement : MonoBehaviour
 
     private bool IsGrounded()// ground check
     {
-        return Physics2D.OverlapCircle(groundX.position, 0.2f, groundZ);
+        return Physics2D.OverlapCircle(groundX.position, 0.4f, groundZ);
     }
 
     private void FixedUpdate()
@@ -70,6 +70,11 @@ public class Movement : MonoBehaviour
     public void Dasforward()
     {
         apple.velocity = new Vector2(3, 0);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(groundX.position, 0.4f);
     }
 
 }

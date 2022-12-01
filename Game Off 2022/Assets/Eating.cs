@@ -5,6 +5,9 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class Eating : MonoBehaviour
 {
+    public GameObject door;
+    public GameObject effectPrefab, effectPos;
+    public GameObject cutscene;
     Rigidbody2D rb;
     public GameObject salad, tomato, meat, cheese;
     public GameObject point;
@@ -12,10 +15,11 @@ public class Eating : MonoBehaviour
     public Sprite empty, empty2 ,charge1, charge2, charge3, charge4, hp1, hp2;
     public Image charges, health;
     GameObject ob;
+    public GameObject forks;
 
     float hp;
     public float range;
-    float eatAmount;
+    public float eatAmount;
     public float eatDelay;
     float invincibility;
 
@@ -67,15 +71,32 @@ public class Eating : MonoBehaviour
                 }
             }
 
-            ob.GetComponent<CanEat>().highlight = 0.02f;
-            if (Input.GetKeyDown(KeyCode.E) && eatDelay <= 0)
+            forks.transform.position = new Vector2(ob.transform.position.x, ob.transform.position.y + 1);
+            //ob.GetComponent<CanEat>().highlight = 0.02f;
+            if (Input.GetKeyDown(KeyCode.Mouse1) && eatDelay <= 0)
             {
-                eatDelay = 0.3f;
-                Destroy(ob);
-                eatAmount++;
+                if (!ob.gameObject.GetComponent<CanEat>().isBoss)
+                {
+                    eatDelay = 0.3f;
+                    Destroy(ob);
+                    eatAmount++;
+                    Invoke("effect", 0.2f);
+                }
+                else if (ob.gameObject.GetComponent<CanEat>().isBoss)
+                {
+                    door.SetActive(true);
+                    cutscene.SetActive(true);
+                    gameObject.GetComponent<Movement>().enabled = false;
+                    Destroy(ob);
+                    Invoke("effect", 0.2f);
+                }
             }
 
+
         }
+        if (hit.Length > 0) forks.SetActive(true);
+        else forks.SetActive(false);
+
 
         // Combating
         if (Input.GetKeyDown(KeyCode.Mouse0))
@@ -138,5 +159,10 @@ public class Eating : MonoBehaviour
             if (transform.position.x <= collision.transform.position.x) rb.velocity = new Vector2(-3, 5);
             else rb.velocity = new Vector2(3, 5);
         }
+    }
+
+    void effect()
+    {  
+        Instantiate(effectPrefab, effectPos.transform.position, Quaternion.identity);
     }
 }

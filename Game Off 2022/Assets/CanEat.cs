@@ -5,6 +5,7 @@ using UnityEngine;
 public class CanEat : MonoBehaviour
 {
     public float highlight;
+    public bool isBoss;
     // Start is called before the first frame update
     void Start()
     {

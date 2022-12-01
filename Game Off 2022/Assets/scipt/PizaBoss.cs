@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PizaBoss : MonoBehaviour
 {
+    Animator boss;
     public Transform sala1, sala2, sala3;
     public Transform slamHitBox;
     public GameObject PineapleSpawn;
@@ -20,50 +21,80 @@ public class PizaBoss : MonoBehaviour
     public float period;
     float repeatCount = 0;
 
+    bool bossDead;
+    public GameObject pizaDead;
 
+    private int idle = Animator.StringToHash("PizzaIdle");
+    private int shoot = Animator.StringToHash("PizzaShoot");
+    private int dead = Animator.StringToHash("PizzaDead");
+    private void Start()
+    {
+        boss = gameObject.GetComponent<Animator>();
+    }
     // Update is called once per frame
     void Update()
     {
         salamiTimer += Time.deltaTime;
         BossFlip();
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (!bossDead)
         {
-            salamiTimer = 10;
-        }
-        if (firstPhases && salamiTimer > 0.7f)
-        {
-            Invoke("salami", 1);
-            salamiTimer = 0;
-            repeatCount++;
-
-            if (repeatCount >= 11)
+            if (firstPhases && salamiTimer > 0.7f)
             {
-                firstPhases = false;
-                secondPhases = true;
-                repeatCount = 0;
-            }
-        }
-        else if (secondPhases && salamiTimer > 2)
-        {
-            Invoke("Pineaple", 1);
-            salamiTimer = 0;
-            repeatCount++;
-
-            if (repeatCount >= 6)
-            {
-                secondPhases = false;
-                firstPhases = true;
-                repeatCount = 0;
+                Invoke("salami", 1);
                 salamiTimer = 0;
+                repeatCount++;
+
+                if (repeatCount >= 11)
+                {
+                    firstPhases = false;
+                    secondPhases = true;
+                    repeatCount = 0;
+                }
+            }
+            else if (secondPhases && salamiTimer > 2)
+            {
+                Invoke("Pineaple", 1);
+                salamiTimer = 0;
+                repeatCount++;
+
+                if (repeatCount >= 6)
+                {
+                    secondPhases = false;
+                    firstPhases = true;
+                    repeatCount = 0;
+                    salamiTimer = 0;
+                }
             }
         }
+
+        if (!bossDead)
+        {
+            var state = GetState();
+
+            if (state == currentState) return;
+            boss.CrossFade(state, 0, 0);
+            currentState = state;
+        }
+        else Invoke("dying", 2);
 
     }
 
+    private int currentState;
     void Pineaple()
     {
         Instantiate(PineapleSpawn, pizaSpawn.position, pizaSpawn.rotation);
+    }
+    private int GetState()
+    {
+        if (gameObject.GetComponent<EnemyScipt>().hp <= 0)
+        {
+            bossDead = true;
+            return dead;
+        }
+
+        if (firstPhases) return shoot;
+        else return idle;
     }
 
     void salami()
@@ -93,5 +124,13 @@ public class PizaBoss : MonoBehaviour
 
     }
     
+    void dying()
+    {
+        if (pizaDead == null) return;
+
+        pizaDead.SetActive(true);
+        gameObject.SetActive(false);
+
+    }
 
 }

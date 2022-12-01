@@ -5,12 +5,10 @@ using UnityEngine;
 public class PizaFly : MonoBehaviour
 {
 
-    // Start is called before the first frame update
-    void Start()
+    private void FixedUpdate()
     {
-        
+        transform.Rotate(new Vector3(0, 0, 180 * Time.deltaTime));
     }
-
 
 
 }

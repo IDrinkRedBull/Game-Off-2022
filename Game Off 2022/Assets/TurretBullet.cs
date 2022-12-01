@@ -17,5 +17,7 @@ public class TurretBullet : MonoBehaviour
     {
         if (rb.velocity.y < -10) rb.drag = 5;
         else rb.drag = 0;
+
+        transform.Rotate(new Vector3(0, 0, 360 * Time.deltaTime));
     }
 }

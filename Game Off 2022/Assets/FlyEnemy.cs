@@ -10,18 +10,18 @@ public class FlyEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
-    {
+    {   
         delay -= Time.deltaTime;
 
         if (delay <= 0)
         {
             delay = 2;
-            Instantiate(bullet, gameObject.transform.position, Quaternion.identity);
+            Instantiate(bullet, transform.position, Quaternion.identity);
         }
     }
 }

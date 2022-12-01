@@ -30,7 +30,7 @@ public class Cheese : MonoBehaviour
 
         Invoke("boomerang", 0.8f);
 
-        if ((transform.position - player.position).magnitude <= 5 && flyBack)
+        if ((transform.position - player.position).magnitude <= 7.6 && flyBack)
         {
             Destroy(gameObject);
         }
@@ -39,7 +39,7 @@ public class Cheese : MonoBehaviour
 
     void boomerang()
     {
-        transform.position = Vector2.Lerp(transform.position, player.position, 2 * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, player.position, 15 * Time.deltaTime);
         flyBack = true;
     }
 }

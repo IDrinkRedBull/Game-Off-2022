@@ -17,53 +17,10 @@ public class PineapleFly : MonoBehaviour
     }
 
 
-
-    /*
-    void OnTriggerEnter2D(Collider2D Hit)
+    private void FixedUpdate()
     {
-        
-        Debug.Log(taged);
-        if(Hit.tag == "Player")
-        {
-            
-            
-            Debug.Log("hit a player");
-        }
-        if (Hit.tag != "Pizza")
-        {
-            //Destroy(gameObject);
-        }
+        transform.Rotate(new Vector3(0, 0, 360 * Time.deltaTime));
     }
-    */
-
-    /*
-    void OnCollisionEnter2D(Collision2D Hit)
-    {
-        /*
-        Debug.Log(taged);
-        if (taged.Equals("Player"))
-        {
-            
-
-            Debug.Log("hit a player");
-        }
-        if (taged.Equals("Pizza"))
-        {
-            //Destroy(gameObject);
-        }
-        
-        if (Hit.gameObject.tag == "TongTong")
-        {
-            rb.velocity = new Vector2(rb.velocity.x, y);
-            Debug.Log("work");
-        }
-
-        Destroy(gameObject, 2f);
-
-
-    }
-    */
-
 
     private void OnTriggerEnter2D(Collider2D Hit)
     {
